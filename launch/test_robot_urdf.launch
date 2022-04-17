@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!-- test robot urdf model -->
+
+    <!-- upload robot URDF model to parameter server -->
+    <param name="robot_description"
+           command="$(find xacro)/xacro '$(find pablowsky_description)/urdf/pablowsky_simplified.urdf.xacro'" />
+
+    <!-- send fake joint values from gui -->
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" >
+        <param name="use_gui" value="true" />
+    </node>
+
+    <!-- generate tf data from urdf model and joint states -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+
+    <!-- visualize robot in Rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pablowsky_description)/config/urdf_visualisation.rviz" />
+
+</launch>

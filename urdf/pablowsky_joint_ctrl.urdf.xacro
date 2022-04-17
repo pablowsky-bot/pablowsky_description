@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<!-- Expose pablowsky individual wheel/joint control (left and right wheel are the joints) 
+     reuse the model from: simplified_pablowsky, add transmission tags and gazebo ros control -->
+
+<robot name="joint_ctrl_pablowsky" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- robot 3D geometry and collision description -->
+  <xacro:include filename="$(find pablowsky_description)/urdf/includes/pablowsky_simplified_model.xacro"/>
+  <!-- common color definitions -->
+  <xacro:include filename="$(find pablowsky_description)/urdf/includes/common_properties.xacro"/>
+  <!-- phisics properties (friction, etc), laser scanner + camera -->
+  <xacro:include filename="$(find pablowsky_description)/urdf/includes/pablowsky_common.gazebo.xacro"/>
+  <!-- allow pablowsky individual joint control for left and right wheel -->
+  <xacro:include filename="$(find pablowsky_description)/urdf/includes/pablowsky_joint_ctrl.gazebo.xacro"/>
+</robot>
